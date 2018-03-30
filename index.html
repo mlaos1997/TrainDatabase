@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Train Time Database</title>
+	<!--Linking Bootstrap 4 CSS-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<!--Linking JQuery-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!--Firebase Reference-->
+	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+	<!--Moment.js Reference-->
+	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+	<!--Linking our CSS-->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+<body>
+	<!--Jumbotron with Title-->
+	<div class="container" id="title">
+		<div class="row">
+	<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<div class="jumbotron">
+
+				<h1>Anytime is Train Time</h1>
+				<p>Choo Choo. Chee Chee.</p>
+
+				</div>
+			</div>
+	<div class="col-md-1"></div>
+		</div>
+	</div>
+
+	<!--This container holds our train schedule-->
+	<div class="container" id = "table">
+		<div class="row">
+	<div class="col-md-1"></div>
+			<div class = "col-md-10">
+				<!--Here we will have our Train Schedule Table--> 
+				<div class="card">
+					<div class="card-header">Current Train Schedule</div>
+					<div class="card-body">
+				 <table class="table table-hover">
+				    <thead>
+				      <tr>
+				        <th>Train Name</th>
+				        <th>Destination</th>
+				        <th>Frequency (min)</th>
+				        <th>Next Arrival</th>
+				        <th>Minutes Away</th>
+				      </tr>
+				    </thead>
+				    <tbody>
+
+				    </tbody>
+				  </table>
+				  </div>
+				</div>
+	<div class="col-md-1"></div>
+			</div>
+		</div>
+	</div>
+
+	<!--This container will hold our form-->
+	<div class="container">
+		<div class="row">
+	<div class="col-md-1"></div>
+			<div class="col-md-10">
+
+				<div class="card" id="trainTable">
+					<div class="card-header">Add Train</div>
+						<div class="card-body">
+					      <form id="contact-form">
+
+					      <label for="train-name-input">Train Name</label>
+					      
+					      <input type="text" id="train-name-input" placeholder="Name of the train..">
+
+					      <label for="destination-input">destination</label>
+					    
+					      <input type="text" id="destination-input" placeholder="Your destination..">
+
+					      <label for="first-train-input">First Train Time (HH:mm - military time)</label>
+					    
+					      <input type="text" id="first-train-input" placeholder="Ex: HH:mm - military time">
+
+					      <label for="frequency-input">Frequency (min)</label>
+					    
+					      <input type="text" id="frequency-input" placeholder="Frequency..">
+
+					      <input type="submit" value="Submit" id="submitBtn">
+
+					      </form>
+						</div>
+				</div>
+	<div class="col-md-1"></div>
+			</div>
+		</div>
+	</div>
+<!--Javascript-->
+<script src="assets/javascript/app.js"></script>
+</body>
+</html>
