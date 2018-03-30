@@ -35,8 +35,8 @@
 	var tArrival = moment().add(tMinutes, "m").format("hh:mm A");
 
 	// Add each train's data into the table
-  $("#trainTable > tbody").append("<tr><td>" + tName + "</td><td>" + tDestination + "</td><td>"
-  + tFrequency + "</td><td>" + tArrival + "</td><td>" + tMinutes + "</td></tr>");
+  $("#trainTable > tbody").append("<tr><th>" + tName + "</th><th>" + tDestination + "</th><th>"
+  + tFrequency + "</th><th>" + tArrival + "</th><th>" + tMinutes + "</th></tr>");
   	});
   
 
@@ -50,7 +50,7 @@
   
   //Save the new price in Firebase. This will cause our "value" callback above to fire and update UI
   //====================================================
-  database.ref().set({
+  trainData.ref().set({
   	name: trainName,
   	destination: destination,
   	firstTrain: firstTrainUnix,
