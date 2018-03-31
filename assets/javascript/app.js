@@ -13,15 +13,48 @@
   //========================================
   var trainData = firebase.database();
 
+    $("#submitBtn").on("click", function () {
+  //Gather user input and store value in variable
+  //==================================================
+  var trainName      = $("#train-name-input").val().trim();
+  var destination    = $("#destination-input").val().trim();
+  var frequency      = $("#frequency-input").val().trim();
+  var firstTrainUnix = moment($("#first-train-input").val().trim(), "HH:mm").subtract(10, "years").format("X");
+  
+  //Pushing our data to Firebase
+  //====================================================
+  var newTrain = {
+  	name: trainName,
+  	destination: destination,
+  	firstTrain: firstTrainUnix,
+  	frequency: frequency
+  };
+
+  // Uploads train data to the database
+  //====================================================
+  trainData.ref().push(newTrain);
+
+  // Clears all of the text-boxes
+  //====================================================
+  $('#train-name-input').val('');
+  $('#destination-input').val('');
+  $('#first-train-input').val('');
+  $('#frequency-input').val('');
+
+  // Determine when the next train arrives
+  //====================================================
+  return false;
+  	});
+
   //This function will create content for our table
   //===================================================
-  trainData.ref().on("value", function(snapshot) {
+  trainData.ref().on("child_added", function(childSnapshot, prevChildKey) {
 	//store everything into a variable
 	//=================================================
-	var tName 		 = snapshot.val().name;
-	var tDestination = snapshot.val().destination;
-	var tFrequency   = snapshot.val().frequency;
-	var tFirstTrain  = snapshot.val().firstTrain;
+	var tName 		 = childSnapshot.val().name;
+	var tDestination = childSnapshot.val().destination;
+	var tFrequency   = childSnapshot.val().frequency;
+	var tFirstTrain  = childSnapshot.val().firstTrain;
 
 
 	// Calculate the minutes until arrival using hardcore math
@@ -40,36 +73,5 @@
   	});
   
 
-  $("#submitBtn").on("click", function () {
-  //Gather user input and store value in variable
-  //==================================================
-  var trainName      = $("#train-name-input").val().trim();
-  var destination    = $("#destination-input").val().trim();
-  var frequency      = $("#frequency-input").val().trim();
-  var firstTrainUnix = moment($("#first-train-input").val().trim(), "HH:mm").subtract(10, "years").format("X");
-  
-  //Save the new price in Firebase. This will cause our "value" callback above to fire and update UI
-  //====================================================
-  trainData.ref().set({
-  	name: trainName,
-  	destination: destination,
-  	firstTrain: firstTrainUnix,
-  	frequency: frequency
-  });
 
-  // Uploads train data to the database
-  //====================================================
-  trainData.ref().push(newTrain);
-
-  // Clears all of the text-boxes
-  //====================================================
-  $('#train-name-input').val('');
-  $('#destination-input').val('');
-  $('#first-train-input').val('');
-  $('#frequency-input').val('');
-
-  // Determine when the next train arrives
-  //====================================================
-  return flase;
-  	});
 
